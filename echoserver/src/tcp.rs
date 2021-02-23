@@ -219,7 +219,7 @@ impl TCP {
 fn get_source_addr_to(addr: Ipv4Addr) -> Result<Ipv4Addr> {
     let output = Command::new("sh")
         .arg("-c")
-        .arg(format!("ip source get {} | grep src", addr))
+        .arg(format!("ip route get {} | grep src", addr))
         .output()?;
     let mut output = str::from_utf8(&output.stdout)?
         .trim()
