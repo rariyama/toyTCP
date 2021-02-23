@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y \
     iputils-ping net-tools \
     netcat \
     sudo \
-    wget \
-    wireshark
+    wget
 
 RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture)"; \
@@ -38,5 +37,9 @@ RUN set -eux; \
 
 WORKDIR /opt/app
 COPY . /opt/app
+
+RUN chmod +x setup.sh
+RUN cargo build --examples
+
 
 CMD /bin/bash
